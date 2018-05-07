@@ -1,25 +1,36 @@
 package Dekanat;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Dekanat {
 
-    private static ArrayList<Student> students = new ArrayList<Student>();    //массив студентов
-    private static ArrayList<Group> groups = new ArrayList<Group>();    //массив групп
-    private static final String sep = System.getProperty("file.separator");
-    private static final String fileDir = "src" + sep + "main" + sep + "resources" + sep + "file.json";    //Место расположение базы по умолчанию
+    private ArrayList<Student> students = new ArrayList<Student>();    //массив студентов
+    private ArrayList<Group> groups = new ArrayList<Group>();    //массив групп
 
-    static void addStudent(Student stud) {
+    public void addStudent(Student stud) {
         students.add(stud);
     }
 
-    static void addGroup(Group gr){
+    public Student newStudent(String fio, int id) {
+        Student newStud = new Student(id, fio);
+        students.add(newStud);
+        return newStud;
+    }
+
+    void addGroup(Group gr){
         groups.add(gr);
     }
 
+    public Group addGroup(String gr){
+        Group newGroup = new Group(gr);
+        groups.add(newGroup);
+        return newGroup;
+    }
+
     //Добавления переданного количества оценок всем студентам
-    public static void addMarksStudent(int namber) {
+    public void addMarksStudent(int namber) {
         Random rand = new Random();
         for (Student stud : students) {
             for (int i = 0; i < namber; i++) {
@@ -29,20 +40,20 @@ public class Dekanat {
     }
 
     //Добавление по одной оценке всем студентам
-    public static void addMarksStudent() {
+    public void addMarksStudent() {
         addMarksStudent(1);
     }
 
 
     //Инициализация выборов/перевыборов старост в группах исходя из успеваемости
-    public static void initiationOfElectionsInGroups() {
+    public void initiationOfElectionsInGroups() {
         for (Group gr : groups) {
             gr.setHeadGroup();
         }
     }
 
     //Отчисление студентов чей балл ниже 3
-    public static void removeStudentsFromGroup() {
+    public void removeStudentsFromGroup() {
         for (Student stud : students) {
             if (stud.getAverageMark() < 3) {
                 for (Group gr : groups) {
@@ -55,13 +66,13 @@ public class Dekanat {
     }
 
     //перевод студента из группы в группу
-    public static void transferOfStudentToGroup(Student stud, Group gr) {
+    public void transferOfStudentToGroup(Student stud, Group gr) {
         stud.getGroup().removeStudentFromGroup(stud);
         gr.addStudentToGroup(stud);
     }
 
     //Получение всей информации о группах и студентах
-    public static String getDataString(){
+    public String getDataString(){
         String outStr = "\tГруппы:\n";
         for(int i = 0; i < groups.size(); i++){
             outStr += "Title: " + groups.get(i).getTitle() + ", num students = " +  groups.get(i).getNumStudents() + ", average mark = " + groups.get(i).getAverageMark() + "\n";
@@ -74,27 +85,40 @@ public class Dekanat {
     }
 
     //Загрузка данных из файла
-    public static void loadStudentAndGroupFromFile(String fileName) {
-
-        ToFromJson.readJson(students, groups, fileName);
+    public boolean loadStudentAndGroupFromFile(String fileName) {
+        //Проверка существования файла
+        File meFile = new File(fileName);
+        if(!meFile.exists()){
+            return false;
+        }
+        ToFromJson.readJson(students, groups, meFile);
+        return true;
     }
 
     //Загрузка данных из файла
-    public static void loadStudentAndGroupFromFile() {
-
-        ToFromJson.readJson(students, groups, fileDir);
+    public boolean loadStudentAndGroupFromFile() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File myFile = new File(classLoader.getResource("file.json").getFile());
+        if(!myFile.exists()){
+            return false;
+        }
+        ToFromJson.readJson(students, groups, myFile);
+        return true;
     }
 
     //Загрузка данных в файл
-    public static void writeStudentAndGroupToFile(String fileName) {
-
-        ToFromJson.writeJson(students, groups, fileName);
+    public boolean writeStudentAndGroupToFile(String fileName) {
+    //Проверка существования файла
+        File meFile = new File(fileName);
+        ToFromJson.writeJson(students, groups, meFile);
+        return true;
     }
 
     //Загрузка данных в файл
-    public static void writeStudentAndGroupToFile() {
-
-        ToFromJson.writeJson(students, groups, fileDir+1);
+    public void writeStudentAndGroupToFile() {
+        File meFile = new File("fileSave.json");
+        ToFromJson.writeJson(students, groups, meFile);
 
     }
 }
+

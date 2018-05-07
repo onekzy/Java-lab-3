@@ -14,7 +14,7 @@ import java.util.ArrayList;
 class ToFromJson {
 
     //Запись в JSON файл ArrayList<Student> и ArrayList<Group>
-    static void writeJson(ArrayList<Student> arrayListStudent, ArrayList<Group> arrayListGroup, String fileName) {
+    static void writeJson(ArrayList<Student> arrayListStudent, ArrayList<Group> arrayListGroup, File JSONfile) {
 
         JSONObject outObj = new JSONObject();   //результирующий JSON объект
         JSONArray arrStudentsJson = new JSONArray();    //Массив студентов
@@ -47,7 +47,7 @@ class ToFromJson {
         //Запись Сформированных данных в файл
         FileWriter writer;
         try {
-            writer = new FileWriter(fileName);
+            writer = new FileWriter(JSONfile);
             writer.write(outObj.toString());
             writer.flush();
             writer.close();
@@ -58,15 +58,11 @@ class ToFromJson {
 
 
     //Парсинг JSON файла в ArrayList<Student> и ArrayList<Group>
-    static boolean readJson(ArrayList<Student> arrayListStudents, ArrayList<Group> arrayListGroups, String fileName) {
+    static void readJson(ArrayList<Student> arrayListStudents, ArrayList<Group> arrayListGroups, File JSONfile) {
         JSONParser parser = new JSONParser();
         try {
-            //Проверка существования файла
-            File meFile = new File(fileName);
-            if(!meFile.exists()){
-                return false;
-            }
-            JSONObject jsonStrGlobal = (JSONObject) parser.parse(new FileReader(meFile));
+
+            JSONObject jsonStrGlobal = (JSONObject) parser.parse(new FileReader(JSONfile));
 
             //Чтение JSON структуры групп
             JSONArray arrayGroupJson = (JSONArray) jsonStrGlobal.get("groups");
@@ -105,13 +101,11 @@ class ToFromJson {
                     newStudent.addMark(mark);
                 }
                 arrayListStudents.add(newStudent);
-
             }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return true;
     }
 }

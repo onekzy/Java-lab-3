@@ -8,7 +8,7 @@ public class Student {
     private Group group;
     private ArrayList<Integer> marks;   //Массив оценок
 
-    public Student(int id, String fio){
+    Student(int id, String fio){
         this.id = id;
         this.fio = fio;
         this.marks = new ArrayList<Integer>();
@@ -47,17 +47,7 @@ public class Student {
             }
         }
     }
-/*
-    //Добавление студента в группу
-    public void addStudentToGroup(Group gr){
-        if(this.group == null){
-            gr.addStudentToGroup(this);
-        } else{
-            this.group.removeStudentFromGroup(this);
-            gr.addStudentToGroup(this);
-        }
-    }
-*/
+
     ArrayList<Integer> getMarks(){
         return new ArrayList<Integer>(marks);
     }

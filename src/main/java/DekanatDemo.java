@@ -1,6 +1,4 @@
 import Dekanat.Dekanat;
-import Dekanat.Group;
-import Dekanat.Student;
 
 public class DekanatDemo {
     public static void main(String[] args) {
@@ -14,13 +12,13 @@ public class DekanatDemo {
         Group gr2 = new Group("Группа №2");
         stud1.addStudentToGroup(gr1);
         stud3.addStudentToGroup(gr2);
-
         System.out.print(Dekanat.getDataString());
         Dekanat.writeStudentAndGroupToFile();*/
-        Dekanat.loadStudentAndGroupFromFile();
-        System.out.print(Dekanat.getDataString());
-        Dekanat.addMarksStudent(5);
-        System.out.print(Dekanat.getDataString());
-        Dekanat.writeStudentAndGroupToFile();
+        Dekanat myDeckanat = new Dekanat();
+        myDeckanat.loadStudentAndGroupFromFile();
+        System.out.print(myDeckanat.getDataString());
+        myDeckanat.addMarksStudent(5);
+        System.out.print(myDeckanat.getDataString());
+        myDeckanat.writeStudentAndGroupToFile();
     }
 }
