@@ -7,13 +7,13 @@ public class Group {
     private ArrayList<Student> students;    //массив из ссылок на студентов
     private Student head = null;   //ссылка на старосту (из членов группы)
 
-    public Group(String title) {
+    Group(String title) {
         this.title = title;
         this.students = new ArrayList<Student>();
     }
 
     //Поиск студента по ID
-    public Student searchStudent(int id) {
+    Student searchStudent(int id) {
         for (Student stud : students) {
             if (stud.getID() == id) {
                 return stud;
@@ -23,7 +23,7 @@ public class Group {
     }
 
     //Поиск студента по ФИО
-    public Student searchStudent(String fio) {
+    Student searchStudent(String fio) {
         for (Student stud : students) {
             if (stud.getFio().equals(fio)) {
                 return stud;
@@ -33,15 +33,16 @@ public class Group {
     }
 
     //Добавление студента в группу
-    public void addStudentToGroup(Student stud) {
+    void addStudentToGroup(Student stud) {
         if(stud.getGroup()!= null){
-
+            stud.getGroup().removeStudentFromGroup(stud);
         }
+        students.add(stud);
         stud.setGroup(this);
     }
 
     //изгнание студента из группы
-    public boolean removeStudentFromGroup(Student stud) {
+    boolean removeStudentFromGroup(Student stud) {
         if (students.indexOf(stud) != -1) {
             students.remove(stud);
             stud.setGroup(null);
@@ -66,7 +67,7 @@ public class Group {
     }
 
     //Избрание/переизбрание старостой переданного студента
-    public void setHeadGroup(Student stud) {
+    void setHeadGroup(Student stud) {
         head = stud;
     }
 
@@ -83,16 +84,20 @@ public class Group {
         this.head = headStud;
     }
 
-    public String getTitle(){
+    String getTitle(){
         return this.title;
     }
 
-    public int getNumStudents(){
+    int getNumStudents(){
         return students.size();
     }
 
-    public String getNameHead(){
+    String getNameHead(){
         return head.getFio();
+    }
+
+    Student getHead(){
+        return head;
     }
 
 }

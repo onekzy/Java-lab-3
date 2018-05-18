@@ -14,19 +14,21 @@ public class Dekanat {
     }
 
     public Student newStudent(String fio, int id) {
-        Student newStud = new Student(id, fio);
-        students.add(newStud);
-        return newStud;
-    }
-
-    void addGroup(Group gr){
-        groups.add(gr);
+        if(students.stream().filter((st)-> st.getID() == id).findFirst().orElse(null) == null) {
+            Student newStud = new Student(id, fio);
+            students.add(newStud);
+            return newStud;
+        }else return null;
     }
 
     public Group addGroup(String gr){
-        Group newGroup = new Group(gr);
-        groups.add(newGroup);
-        return newGroup;
+        if(groups.stream().filter((grloc)-> grloc.getTitle().equals(gr)).findFirst().orElse(null) == null) {
+            Group newGroup = new Group(gr);
+            groups.add(newGroup);
+            return newGroup;
+        }else{
+            return null;
+        }
     }
 
     //Добавления переданного количества оценок всем студентам
@@ -75,7 +77,11 @@ public class Dekanat {
     public String getDataString(){
         String outStr = "\tГруппы:\n";
         for(int i = 0; i < groups.size(); i++){
-            outStr += "Title: " + groups.get(i).getTitle() + ", num students = " +  groups.get(i).getNumStudents() + ", average mark = " + groups.get(i).getAverageMark() + "\n";
+            outStr += "Title: " + groups.get(i).getTitle() + ", num students = " +  groups.get(i).getNumStudents() + ", average mark = " + groups.get(i).getAverageMark();
+            if(groups.get(i).getHead()!= null){
+                outStr+=", head name = " + groups.get(i).getHead().getFio() + ", head ID = " + groups.get(i).getHead().getID();
+            }
+            outStr += "\n";
         }
         outStr += "\tСтуденты:\n";
         for(int i = 0; i < students.size(); i++){
@@ -118,7 +124,17 @@ public class Dekanat {
     public void writeStudentAndGroupToFile() {
         File meFile = new File("fileSave.json");
         ToFromJson.writeJson(students, groups, meFile);
+    }
 
+
+    //Поиск студента по ID
+    public Student searchStudent(int id) {
+        return students.stream().filter((st)-> st.getID() == id).findFirst().orElse(null);
+    }
+
+    //Поиск студента по ФИО
+    public Student searchStudent(String fio) {
+        return students.stream().filter((st)-> st.getFio().equals(fio)).findFirst().orElse(null);
     }
 }
 
