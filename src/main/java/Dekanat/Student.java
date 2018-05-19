@@ -19,7 +19,7 @@ public class Student {
     }
 
     //Получение средней оценки
-    public double getAverageMark(){
+    public Double getAverageMark(){
         int averageMark = 0;
         for(Integer mark: marks){
             averageMark += mark;

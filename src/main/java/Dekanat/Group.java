@@ -53,7 +53,7 @@ public class Group {
     }
 
     //Средний балл группы
-    public double getAverageMark() {
+    public Double getAverageMark() {
         if (students.size() > 0) {
             double averageMark = 0;
             for (Student stud : students) {
