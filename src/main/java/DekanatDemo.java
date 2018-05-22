@@ -196,7 +196,8 @@ class Dekanat{
             groupArray.add(newObj);
         }
 
-        try (FileWriter file = new FileWriter("Groups.json")) {
+        try  {
+            FileWriter file = new FileWriter("Groups.json");
             file.write(groupArray.toJSONString());
             file.flush();
         } catch (IOException e) {
