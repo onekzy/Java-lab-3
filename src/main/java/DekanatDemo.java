@@ -175,7 +175,8 @@ class Dekanat{
             studentsArray.add(newObj);
         }
 
-        try (FileWriter file = new FileWriter("Students.json")) {
+        try  {
+            FileWriter file = new FileWriter("Students.json");
             file.write(studentsArray.toJSONString());
             file.flush();
         } catch (IOException e) {
