@@ -269,7 +269,7 @@ import java.util.*;
              JSONObject obj = new JSONObject();
 
                  try(FileWriter file=new FileWriter("src/main/resources/file.json")) {
-                     JSONArray jsonArray=new JSONArray();
+                    // JSONArray jsonArray=new JSONArray();
 
                      for(Student student:setOfStudents) {
                      obj.put("id", student.getId());
