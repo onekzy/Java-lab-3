@@ -31,7 +31,7 @@ class ToFromJson {
         for (int i = 0; i < arrayListStudent.size(); i++) {
             JSONObject student = new JSONObject();  //Студент
             student.put("fio", arrayListStudent.get(i).getFio());
-            student.put("id", arrayListStudent.get(i).getID());
+            student.put("id", arrayListStudent.get(i).getId());
             student.put("group", arrayListStudent.get(i).getTitleGroup());
 
             JSONArray arrMarks = new JSONArray();   //Массив оценок студентов

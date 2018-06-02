@@ -6,21 +6,26 @@ public class Student {
     private int id; //Идентификационный номер
     private String fio;
     private Group group;
-    private ArrayList<Integer> marks;   //Массив оценок
+    private ArrayList<Integer> marks = new ArrayList<Integer>();   //Массив оценок
 
     Student(int id, String fio){
         this.id = id;
         this.fio = fio;
-        this.marks = new ArrayList<Integer>();
     }
 
     void setGroup(Group gr){
         group = gr;
     }
 
-    //Получение средней оценки
+    /**
+     * Рассчёт среднего балла
+      * @return
+     */
     public Double getAverageMark(){
         int averageMark = 0;
+        if(marks.size() == 0){
+            return 0.0;
+        }
         for(Integer mark: marks){
             averageMark += mark;
         }
@@ -31,7 +36,7 @@ public class Student {
         return this.group;
     }
 
-    public int getID(){
+    public int getId(){
         return this.id;
     }
 

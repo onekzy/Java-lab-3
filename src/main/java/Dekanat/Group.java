@@ -12,71 +12,85 @@ public class Group {
         this.students = new ArrayList<Student>();
     }
 
-    //Поиск студента по ID
-    Student searchStudent(int id) {
-        for (Student stud : students) {
-            if (stud.getID() == id) {
-                return stud;
-            }
-        }
-        return null;
+    /**
+     * Поиск студента по id
+     * @param id id студента
+     * @return найденный студент
+     */
+    public Student searchStudent(int id) {
+        return students.stream().filter((st)-> st.getId() == id).findFirst().orElse(null);
     }
 
-    //Поиск студента по ФИО
-    Student searchStudent(String fio) {
-        for (Student stud : students) {
-            if (stud.getFio().equals(fio)) {
-                return stud;
-            }
-        }
-        return null;
+    /**
+     * Поиск студента по ФИО
+     * @param fio ФИО
+     * @return найденный студент
+     */
+    public Student searchStudent(String fio) {
+        return students.stream().filter((st)-> st.getFio().equals(fio)).findFirst().orElse(null);
     }
 
-    //Добавление студента в группу
-    void addStudentToGroup(Student stud) {
-        if(stud.getGroup()!= null){
-            stud.getGroup().removeStudentFromGroup(stud);
+    /**
+     * Добавление/перевод студента в группу
+     * @param student переводимый студент
+     */
+    void addStudentToGroup(Student student) {
+        if(student.getGroup()!= null){
+            student.getGroup().removeStudentFromGroup(student);
         }
-        students.add(stud);
-        stud.setGroup(this);
+        students.add(student);
+        student.setGroup(this);
     }
 
-    //изгнание студента из группы
-    boolean removeStudentFromGroup(Student stud) {
-        if (students.indexOf(stud) != -1) {
-            students.remove(stud);
-            stud.setGroup(null);
-            return true;
-        } else {
-            return false;
+    /**
+     * Отчисление переданного студента
+     * @param student отчисляемый студент
+     * @return успешность операции
+     */
+    boolean removeStudentFromGroup(Student student) {
+        if(student.getGroup().getHead() == student){
+            student.getGroup().setHeadGroup(null);
         }
+        return students.remove(student);
     }
 
-    //Средний балл группы
+    /**
+     * Вычисление среднего балла группы
+      * @return
+     */
     public Double getAverageMark() {
         if (students.size() > 0) {
             double averageMark = 0;
             for (Student stud : students) {
                 averageMark += stud.getAverageMark();
             }
-            averageMark = averageMark / students.size();
-            return averageMark;
+            return averageMark / students.size();
         } else {
-            return 0.0;
+            return null;
         }
     }
 
-    //Избрание/переизбрание старостой переданного студента
-    void setHeadGroup(Student stud) {
-        head = stud;
+    /**
+     * Избрание старостой переданного студента
+     * @param student студент
+     */
+    boolean setHeadGroup(Student student) {
+        if (students.contains(student)) {
+            this.head = student;
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    //Избрание/переизбрание старосты исходя из успеваемости
+    /**
+     * Избрание старостой студента с наивысшим средним баллом
+      */
     public void setHeadGroup() {
         Student headStud = null;
         double averageMark = 0.0;
         for(Student student:students){
-            if(student.getAverageMark() > averageMark){
+            if(student.getAverageMark() >= averageMark){
                 headStud = student;
                 averageMark = student.getAverageMark();
             }
@@ -84,19 +98,15 @@ public class Group {
         this.head = headStud;
     }
 
-    String getTitle(){
+    public String getTitle(){
         return this.title;
     }
 
-    int getNumStudents(){
+    public int getNumStudents(){
         return students.size();
     }
 
-    String getNameHead(){
-        return head.getFio();
-    }
-
-    Student getHead(){
+    public Student getHead(){
         return head;
     }
 
