@@ -110,4 +110,11 @@ public class Group {
         return head;
     }
 
+    public String toString() {
+        String outStr = "Title: " + title + ", num students: " + students.size() + ", average mark = " + (getAverageMark() == null ? 0 : getAverageMark().toString().substring(0, 3));
+        if (head != null) {
+            outStr += ", head: " + head.getFio();
+        }
+        return outStr;
+    }
 }

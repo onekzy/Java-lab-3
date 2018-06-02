@@ -115,7 +115,7 @@ public class Dekanat {
         for (Student stud : students) {
             if(stud.getAverageMark() < averageMark){
                 removeStudent(stud);
-            }
+            }//Плохо работает:(((((((((
         }
     }
 
@@ -125,7 +125,7 @@ public class Dekanat {
      * @param group группа в которую осуществляется перевод
      * @return успешность выполнения
      */
-    public boolean transferOfStudentToGroup(Student student, Group group) {
+    public boolean addStudentToGroup(Student student, Group group) {
         if (groups.contains(group) && students.contains(student)) {
             group.addStudentToGroup(student);
             return true;
@@ -135,21 +135,15 @@ public class Dekanat {
     }
 
     //Получение всей информации о группах и студентах
-    public String getDataStudentsAndGroup(){
+    public String getDataStudentsAndGroup() {
         String outStr = "\tГруппы:\n";
-        for(int i = 0; i < groups.size(); i++){
-            outStr += "Title: " + groups.get(i).getTitle() + ", num students = " +  groups.get(i).getNumStudents() + ", average mark = " + groups.get(i).getAverageMark().toString().substring(0,2);
-            if(groups.get(i).getHead()!= null){
-                outStr+=", head name = " + groups.get(i).getHead().getFio() + ", head ID = " + groups.get(i).getHead().getId();
-            }
-            outStr += "\n";
+        for (int i = 0; i < groups.size(); i++) {
+            outStr += groups.get(i).toString() + "\n";
         }
 
         outStr += "\tСтуденты:\n";
-        for(int i = 0; i < students.size(); i++) {
-            outStr += "ID: " + students.get(i).getId() + ", fio: " + students.get(i).getFio() + ", average mark = " +
-                    students.get(i).getAverageMark().toString().substring(0, 3) +
-                    ", group: " + students.get(i).getTitleGroup() + "\n";
+        for (int i = 0; i < students.size(); i++) {
+            outStr += students.get(i).toString() + "\n";
         }
         return outStr;
     }

@@ -6,7 +6,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/Dekanat/Dekanat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dekanat/Dekanat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Dekanat/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dekanat/Group.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Dekanat/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dekanat/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dekanat/ToFromJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dekanat/ToFromJson.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DekanatDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DekanatDemo.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,8 +21,8 @@
       <file leaf-file-name="DekanatDemo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/DekanatDemo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="85">
+              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,8 +51,8 @@
       <file leaf-file-name="Dekanat.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Dekanat/Dekanat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="158" column="41" selection-start-line="158" selection-start-column="41" selection-end-line="158" selection-end-column="41" />
+            <state relative-caret-position="129">
+              <caret line="99" column="7" lean-forward="true" selection-start-line="99" selection-start-column="7" selection-end-line="99" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#172#181#0" expanded="true" />
@@ -67,11 +66,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ArrayList.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/ArrayList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="116">
+              <caret line="858" selection-start-line="858" selection-end-line="858" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ToFromJson.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Dekanat/ToFromJson.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="350">
-              <caret line="90" column="58" lean-forward="true" selection-start-line="90" selection-start-column="58" selection-end-line="90" selection-end-column="58" />
+              <caret line="90" column="58" selection-start-line="90" selection-start-column="58" selection-end-line="90" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -79,18 +87,20 @@
       <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Dekanat/Student.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+            <state relative-caret-position="293">
+              <caret line="68" column="30" lean-forward="true" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
               <folding>
                 <element signature="e#216#225#0" expanded="true" />
-                <element signature="e#725#726#0" expanded="true" />
-                <element signature="e#758#759#0" expanded="true" />
-                <element signature="e#783#784#0" expanded="true" />
+                <element signature="e#364#365#0" expanded="true" />
+                <element signature="e#390#391#0" expanded="true" />
+                <element signature="e#754#755#0" expanded="true" />
+                <element signature="e#787#788#0" expanded="true" />
                 <element signature="e#813#814#0" expanded="true" />
-                <element signature="e#842#843#0" expanded="true" />
+                <element signature="e#843#844#0" expanded="true" />
                 <element signature="e#873#874#0" expanded="true" />
-                <element signature="e#1115#1116#0" expanded="true" />
-                <element signature="e#1167#1168#0" expanded="true" />
+                <element signature="e#904#905#0" expanded="true" />
+                <element signature="e#1146#1147#0" expanded="true" />
+                <element signature="e#1198#1199#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,8 +109,8 @@
       <file leaf-file-name="Group.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Dekanat/Group.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="89" column="32" lean-forward="true" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
+            <state relative-caret-position="-1332">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="e#2518#2519#0" expanded="true" />
                 <element signature="e#2551#2552#0" expanded="true" />
@@ -122,8 +132,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/Dekanat/ToFromJson.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Dekanat/Group.java" />
         <option value="$PROJECT_DIR$/src/main/java/Dekanat/Student.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Dekanat/Group.java" />
         <option value="$PROJECT_DIR$/src/main/java/DekanatDemo.java" />
         <option value="$PROJECT_DIR$/src/main/java/Dekanat/Dekanat.java" />
       </list>
@@ -303,7 +313,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
@@ -314,18 +323,18 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.32995737" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.42701524" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33551198" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32897604" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15085287" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15085287" />
       <window_info id="Learn" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.26361656" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.26361656" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
@@ -392,14 +401,16 @@
           <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
           <folding>
             <element signature="e#216#225#0" expanded="true" />
-            <element signature="e#725#726#0" expanded="true" />
-            <element signature="e#758#759#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
+            <element signature="e#364#365#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#754#755#0" expanded="true" />
+            <element signature="e#787#788#0" expanded="true" />
             <element signature="e#813#814#0" expanded="true" />
-            <element signature="e#842#843#0" expanded="true" />
+            <element signature="e#843#844#0" expanded="true" />
             <element signature="e#873#874#0" expanded="true" />
-            <element signature="e#1115#1116#0" expanded="true" />
-            <element signature="e#1167#1168#0" expanded="true" />
+            <element signature="e#904#905#0" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
+            <element signature="e#1198#1199#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -643,14 +654,51 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Dekanat/ToFromJson.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
-          <caret line="90" column="58" lean-forward="true" selection-start-line="90" selection-start-column="58" selection-end-line="90" selection-end-column="58" />
+          <caret line="90" column="58" selection-start-line="90" selection-start-column="58" selection-end-line="90" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Dekanat/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="68" column="30" lean-forward="true" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+          <folding>
+            <element signature="e#216#225#0" expanded="true" />
+            <element signature="e#364#365#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#754#755#0" expanded="true" />
+            <element signature="e#787#788#0" expanded="true" />
+            <element signature="e#813#814#0" expanded="true" />
+            <element signature="e#843#844#0" expanded="true" />
+            <element signature="e#873#874#0" expanded="true" />
+            <element signature="e#904#905#0" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
+            <element signature="e#1198#1199#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="858" selection-start-line="858" selection-end-line="858" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DekanatDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Dekanat/Group.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="89" column="32" lean-forward="true" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
+        <state relative-caret-position="-1332">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
           <folding>
             <element signature="e#2518#2519#0" expanded="true" />
             <element signature="e#2551#2552#0" expanded="true" />
@@ -662,38 +710,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Dekanat/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding>
-            <element signature="e#216#225#0" expanded="true" />
-            <element signature="e#725#726#0" expanded="true" />
-            <element signature="e#758#759#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
-            <element signature="e#813#814#0" expanded="true" />
-            <element signature="e#842#843#0" expanded="true" />
-            <element signature="e#873#874#0" expanded="true" />
-            <element signature="e#1115#1116#0" expanded="true" />
-            <element signature="e#1167#1168#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DekanatDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Dekanat/Dekanat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="158" column="41" selection-start-line="158" selection-start-column="41" selection-end-line="158" selection-end-column="41" />
+        <state relative-caret-position="129">
+          <caret line="99" column="7" lean-forward="true" selection-start-line="99" selection-start-column="7" selection-end-line="99" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#172#181#0" expanded="true" />
