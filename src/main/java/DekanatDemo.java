@@ -26,7 +26,7 @@ public class DekanatDemo {
         myDeckanat.initiationOfElectionsInGroups();
         System.out.println(myDeckanat.getDataStudentsAndGroup());
         myDeckanat.removeStudent("Andrei");
-        myDeckanat.removeStudent(2.5);
+        myDeckanat.removeStudent(2.7);
         System.out.println(myDeckanat.getDataStudentsAndGroup());
 
     }

@@ -2,7 +2,9 @@ package Dekanat;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Dekanat {
 
@@ -46,7 +48,7 @@ public class Dekanat {
      */
     public void addMarksStudent(int namber) {
         Random rand = new Random();
-        students.parallelStream().forEach(student -> {
+        students.stream().forEach(student -> {
             for (int i = 0; i < namber; i++) student.addMark(rand.nextInt(4) + 1);
         });
     }
@@ -112,10 +114,9 @@ public class Dekanat {
      * @param averageMark минимально допустимый средний балл
      */
     public void removeStudent(double averageMark) {
-        for (Student stud : students) {
-            if(stud.getAverageMark() < averageMark){
-                removeStudent(stud);
-            }//Плохо работает:(((((((((
+        List<Student> studToRemove = students.stream().filter(student -> student.getAverageMark() < averageMark).collect(Collectors.toList());
+        for(Student student:studToRemove){
+            removeStudent(student);
         }
     }
 
@@ -136,14 +137,9 @@ public class Dekanat {
 
     //Получение всей информации о группах и студентах
     public String getDataStudentsAndGroup() {
-        String outStr = "\tГруппы:\n";
+        String outStr = "Группы:\n";
         for (int i = 0; i < groups.size(); i++) {
-            outStr += groups.get(i).toString() + "\n";
-        }
-
-        outStr += "\tСтуденты:\n";
-        for (int i = 0; i < students.size(); i++) {
-            outStr += students.get(i).toString() + "\n";
+            outStr += i+1 + ". " + groups.get(i).toString() + "\n";
         }
         return outStr;
     }

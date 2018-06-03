@@ -48,15 +48,15 @@ public class Group {
      * @return успешность операции
      */
     boolean removeStudentFromGroup(Student student) {
-        if(student.getGroup().getHead() == student){
-            student.getGroup().setHeadGroup(null);
+        if(getHead() == student){
+            head = null;
         }
         return students.remove(student);
     }
 
     /**
      * Вычисление среднего балла группы
-      * @return
+      * @return средний балл группы
      */
     public Double getAverageMark() {
         if (students.size() > 0) {
@@ -110,11 +110,19 @@ public class Group {
         return head;
     }
 
+
     public String toString() {
         String outStr = "Title: " + title + ", num students: " + students.size() + ", average mark = " + (getAverageMark() == null ? 0 : getAverageMark().toString().substring(0, 3));
         if (head != null) {
             outStr += ", head: " + head.getFio();
         }
+        if(students.size()!=0) {
+            outStr += "\n\tСтуденты: \n";
+            for (Student student : students) {
+                outStr += "\t" + student.toString() + "\n";
+            }
+        }
+
         return outStr;
     }
 }

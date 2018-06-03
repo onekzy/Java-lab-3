@@ -10,10 +10,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 class ToFromJson {
-
-    //Запись в JSON файл ArrayList<Student> и ArrayList<Group>
+    /**
+     * Запись в JSON файл ArrayList<Student> и ArrayList<Group>
+     * @param arrayListStudent список студентов
+     * @param arrayListGroup список групп
+     * @param JSONfile имя файла для чтения
+     */
     static void writeJson(ArrayList<Student> arrayListStudent, ArrayList<Group> arrayListGroup, File JSONfile) {
 
         JSONObject outObj = new JSONObject();   //результирующий JSON объект
@@ -35,9 +40,7 @@ class ToFromJson {
             student.put("group", arrayListStudent.get(i).getTitleGroup());
 
             JSONArray arrMarks = new JSONArray();   //Массив оценок студентов
-            for (Integer mark : arrayListStudent.get(i).getMarks()) {
-                arrMarks.add(mark);
-            }
+            arrMarks.addAll(arrayListStudent.get(i).getMarks());
             student.put("marks", arrMarks);
             arrStudentsJson.add(student);
         }
@@ -61,23 +64,14 @@ class ToFromJson {
     static void readJson(ArrayList<Student> arrayListStudents, ArrayList<Group> arrayListGroups, File JSONfile) {
         JSONParser parser = new JSONParser();
         try {
-
             JSONObject jsonStrGlobal = (JSONObject) parser.parse(new FileReader(JSONfile));
 
             //Чтение JSON структуры групп
             JSONArray arrayGroupJson = (JSONArray) jsonStrGlobal.get("groups");
             for (int i = 0; i < arrayGroupJson.size(); i++) {
-                String titleGroup = (String) arrayGroupJson.get(i);
-                boolean flag = false;
-                for (int j = 0; j < arrayListGroups.size(); j++) {
-                    if (arrayListGroups.get(j).getTitle().equals(titleGroup)) {
-                        flag = true;
-                        break;
-                    }
-                }
-                if (!flag) {
-                    Group gr = new Group(titleGroup);
-                    arrayListGroups.add(gr);
+                Group group = new Group((String) arrayGroupJson.get(i));
+                if(arrayListGroups.stream().filter(gr->gr.getTitle().equals(group.getTitle())).count()==0){
+                    arrayListGroups.add(group);
                 }
             }
 
