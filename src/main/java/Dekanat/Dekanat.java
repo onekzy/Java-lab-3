@@ -135,7 +135,10 @@ public class Dekanat {
         }
     }
 
-    //Получение всей информации о группах и студентах
+    /**
+     * Получение данных о студентах и группах
+     * @return данные о студентах и группах деканата
+     */
     public String getDataStudentsAndGroup() {
         String outStr = "Группы:\n";
         for (int i = 0; i < groups.size(); i++) {
@@ -144,43 +147,25 @@ public class Dekanat {
         return outStr;
     }
 
-    /*
-    //Загрузка данных из файла
-    public boolean loadStudentAndGroupFromFile(String fileName) {
-        //Проверка существования файла
-        File meFile = new File(fileName);
-        if(!meFile.exists()){
-            return false;
-        }
-        ToFromJson.readJson(students, groups, meFile);
-        return true;
+    /**
+     * Загрузка данных из файла
+     */
+    public void loadStudentAndGroupFromFile() {
+        String fileName = "/file.json";
+        students.clear();
+        groups.clear();
+        ToFromJson.readJson(students, groups, fileName);
     }
 
-    //Загрузка данных из файла
-    public boolean loadStudentAndGroupFromFile() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File myFile = new File(classLoader.getResource("file.json").getFile());
-        if(!myFile.exists()){
-            return false;
-        }
-        ToFromJson.readJson(students, groups, myFile);
-        return true;
-    }
 
-    //Загрузка данных в файл
-    public boolean writeStudentAndGroupToFile(String fileName) {
-    //Проверка существования файла
-        File meFile = new File(fileName);
-        ToFromJson.writeJson(students, groups, meFile);
-        return true;
-    }
-
-    //Загрузка данных в файл
+    /**
+     * Сохранение данных в файл
+     */
     public void writeStudentAndGroupToFile() {
-        File meFile = new File("fileSave.json");
-        ToFromJson.writeJson(students, groups, meFile);
+        String fileName = "fileSave.json";
+        ToFromJson.writeJson(students, groups, fileName);
     }
-*/
+
     /**
      * Поиск студента по id
      * @param id id студента

@@ -9,7 +9,7 @@ public class DekanatDemo {
         Student newStud2 = myDeckanat.newStudent("Vova", 2);
         Student newStud3 = myDeckanat.newStudent("Irina", 3);
         myDeckanat.addStudentToGroup(myDeckanat.newStudent("Andrei", 4), myDeckanat.newGroup("Group4"));
-
+        Boolean bool = newStud1.equals(newStud1);
         Group group1 = myDeckanat.newGroup("Group1");
         myDeckanat.addStudentToGroup(newStud1, group1);
         myDeckanat.addStudentToGroup(newStud2, group1);
@@ -25,9 +25,8 @@ public class DekanatDemo {
         myDeckanat.addMarksStudent(10);
         myDeckanat.initiationOfElectionsInGroups();
         System.out.println(myDeckanat.getDataStudentsAndGroup());
-        myDeckanat.removeStudent("Andrei");
-        myDeckanat.removeStudent(2.7);
+        myDeckanat.loadStudentAndGroupFromFile();
+        myDeckanat.writeStudentAndGroupToFile();
         System.out.println(myDeckanat.getDataStudentsAndGroup());
-
     }
 }

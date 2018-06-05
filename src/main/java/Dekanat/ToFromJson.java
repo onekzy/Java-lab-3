@@ -5,12 +5,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 class ToFromJson {
     /**
@@ -19,7 +15,7 @@ class ToFromJson {
      * @param arrayListGroup список групп
      * @param JSONfile имя файла для чтения
      */
-    static void writeJson(ArrayList<Student> arrayListStudent, ArrayList<Group> arrayListGroup, File JSONfile) {
+    static void writeJson(ArrayList<Student> arrayListStudent, ArrayList<Group> arrayListGroup, String JSONfile) {
 
         JSONObject outObj = new JSONObject();   //результирующий JSON объект
         JSONArray arrStudentsJson = new JSONArray();    //Массив студентов
@@ -59,12 +55,20 @@ class ToFromJson {
         }
     }
 
+    /**
+     * Загрузка из JSON файла списка студентов и групп
+     * @param arrayListStudents список студентов
+     * @param arrayListGroups список групп
+     * @param JSONfile имя JSON файла
+     */
 
     //Парсинг JSON файла в ArrayList<Student> и ArrayList<Group>
-    static void readJson(ArrayList<Student> arrayListStudents, ArrayList<Group> arrayListGroups, File JSONfile) {
+    static void readJson(ArrayList<Student> arrayListStudents, ArrayList<Group> arrayListGroups, String JSONfile) {
         JSONParser parser = new JSONParser();
         try {
-            JSONObject jsonStrGlobal = (JSONObject) parser.parse(new FileReader(JSONfile));
+            InputStream in=ToFromJson.class.getResourceAsStream(JSONfile);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            JSONObject jsonStrGlobal = (JSONObject) parser.parse(reader);
 
             //Чтение JSON структуры групп
             JSONArray arrayGroupJson = (JSONArray) jsonStrGlobal.get("groups");
@@ -91,7 +95,7 @@ class ToFromJson {
                 }
                 JSONArray arrayMarks = (JSONArray) stud.get("marks");
                 for (int j = 0; j < arrayMarks.size(); j++) {
-                    int mark = ((Long) arrayMarks.get(j)).intValue();
+                    int mark = ((Long)arrayMarks.get(j)).intValue();
                     newStudent.addMark(mark);
                 }
                 arrayListStudents.add(newStudent);
