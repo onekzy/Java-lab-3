@@ -79,21 +79,22 @@ public class Student {
     public boolean equals(Object obj) {
         if (obj.getClass().getTypeName().equals("Dekanat.Student")) {
             Student stud = (Student) obj;
-            if (stud.getFio().equals(this.getFio()) &&
-                    stud.getId() == this.getId() &&
-                    this.getMarks().size() == stud.getMarks().size()) {
-                List marksIn = stud.getMarks();
-                List markThis = this.getMarks();
-                int size = stud.getMarks().size();
-                for (int i = 0; i < size; i++) {
-                    if (marksIn.get(i) != markThis.get(i)) {
+            if (stud.id == this.id && stud.fio.equals(this.fio) && this.marks.size() == stud.marks.size()) {
+                for (int i = 0; i < this.marks.size(); i++) {
+                    if (this.marks.get(i) != stud.marks.get(i)) {
                         return false;
                     }
                 }
-                return true;
+                if (this.group != null && stud.group != null) {
+                    if (this.group.getTitle().equals(stud.group.getTitle())) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else if (this.group == null && stud.group == null){
+                    return true;
+                }
             }
-        } else {
-            return false;
         }
         return false;
     }

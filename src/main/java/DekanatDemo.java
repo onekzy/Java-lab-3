@@ -25,8 +25,8 @@ public class DekanatDemo {
         myDeckanat.addMarksStudent(10);
         myDeckanat.initiationOfElectionsInGroups();
         System.out.println(myDeckanat.getDataStudentsAndGroup());
-        myDeckanat.loadStudentAndGroupFromFile();
-        myDeckanat.writeStudentAndGroupToFile();
+        myDeckanat.loadStudentAndGroup();
+        myDeckanat.saveStudentAndGroup();
         System.out.println(myDeckanat.getDataStudentsAndGroup());
     }
 }

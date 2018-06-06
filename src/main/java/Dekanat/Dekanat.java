@@ -113,7 +113,7 @@ public class Dekanat {
      * Отчисление студентов чей балл ниже переданного
      * @param averageMark минимально допустимый средний балл
      */
-    public void removeStudent(double averageMark) {
+    public void removeStudentMark(double averageMark) {
         List<Student> studToRemove = students.stream().filter(student -> student.getAverageMark() < averageMark).collect(Collectors.toList());
         for(Student student:studToRemove){
             removeStudent(student);
@@ -150,8 +150,13 @@ public class Dekanat {
     /**
      * Загрузка данных из файла
      */
-    public void loadStudentAndGroupFromFile() {
+    public void loadStudentAndGroup() {
         String fileName = "/file.json";
+        students.clear();
+        groups.clear();
+        ToFromJson.readJson(students, groups, fileName);
+    }
+    public void loadStudentAndGroup(String fileName) {
         students.clear();
         groups.clear();
         ToFromJson.readJson(students, groups, fileName);
@@ -161,11 +166,13 @@ public class Dekanat {
     /**
      * Сохранение данных в файл
      */
-    public void writeStudentAndGroupToFile() {
-        String fileName = "fileSave.json";
+    public void saveStudentAndGroup() {
+        String fileName = "/fileSave.json";
         ToFromJson.writeJson(students, groups, fileName);
     }
-
+    public void saveStudentAndGroup(String fileName) {
+        ToFromJson.writeJson(students, groups, fileName);
+    }
     /**
      * Поиск студента по id
      * @param id id студента
