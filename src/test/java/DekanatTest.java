@@ -13,34 +13,31 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class DekanatTest {
-    URL file;
-    String path;
+    //URL file;
+    Dekanat Dekanat;
     File fileXLSX ;
     File fileJSON ;
     @Before
     public void setup() {
-        try {
-            file=System.class.getResource("/dekanat.xlsx");
-        this.fileXLSX = new File(file.getFile());
 
-        file=System.class.getResource("/dekanat.json");
-        this.fileJSON = new File(file.getFile());
-        }catch (NullPointerException e1){
-            System.out.println("Not found file: "+file.getPath()+e1);
-            return;
+        this.fileJSON = new File("dekanat.json");
+        try {
+            Dekanat = new Dekanat(".xlsx", fileJSON);
+        } catch (Exception e) {
+            e.printStackTrace();
+
         }
     }
-
     @Test
-    public void createFirstDataBase() throws Exception {
-        Dekanat Dekanat = new Dekanat(fileXLSX);
+    public void createFirstDataBase() throws IOException {
+      //  Dekanat Dekanat = new Dekanat(".xlsx",fileJSON);
         ArrayList<String> actualList=Dekanat.createFirstDataBase();
    assertFalse("Fall because  the array of data from the file is empty",actualList.isEmpty());
     }
 
     @Test
     public void setStudentsAndGroup() throws Exception {
-        Dekanat Dekanat = new Dekanat(fileXLSX);
+        Dekanat Dekanat = new Dekanat(".xlsx",fileJSON);
 
         Assert.assertFalse("fall if not found name of the student",Dekanat.getStudents().get(0).getNameOfStudent().isEmpty());
         Assert.assertFalse("fall if not found groups",Dekanat.getGroups().isEmpty());
@@ -49,7 +46,7 @@ public class DekanatTest {
 
     @Test
     public void addMarksRandom() throws Exception {
-        Dekanat Dekanat = new Dekanat(fileXLSX);
+        Dekanat Dekanat = new Dekanat(".xlsx",fileJSON);
         Dekanat.addMarksRandom(5);
         for (Student student:Dekanat.getStudents()) {
           int countMarks=student.getCountMarksOfStudent();
@@ -59,10 +56,10 @@ public class DekanatTest {
 
     @Test
     public void downloadDataInFileJSON() throws Exception {
-        Dekanat DekanatActual = new Dekanat(fileXLSX);
+        Dekanat DekanatActual = new Dekanat(".xlsx",fileJSON);
         ArrayList <Student> actualStudents=DekanatActual.getStudents();
         DekanatActual.downloadDataInFileJSON();
-        Dekanat DekanatExpect=new Dekanat(fileJSON);
+        Dekanat DekanatExpect=new Dekanat(".xlsx",fileJSON);
          ArrayList<Student> expectStudents=DekanatExpect.getStudents();
        for(int i=0;i<actualStudents.size();i++)
            Assert.assertEquals("fall if the actual list of name of student after download from file" +
@@ -74,7 +71,7 @@ Assert.assertEquals("fall if the size of the actual list of students after downl
 
     @Test
     public void removeStudent() throws Exception {
-        Dekanat Dekanat = new Dekanat(fileXLSX);
+        Dekanat Dekanat = new Dekanat(".xlsx",fileJSON);
         Group currentGroup=Dekanat.getGroups().get(0);
         Dekanat.addHeadInGroupRandom(currentGroup);
         Student student=currentGroup.getHead();
@@ -103,7 +100,7 @@ Assert.assertEquals("fall if the size of the actual list of students after downl
 
     @Test
     public void changeStudents() throws Exception {
-        Dekanat Dekanat = new Dekanat(fileJSON);
+        Dekanat Dekanat = new Dekanat(".xlsx",fileJSON);
         Student studentFirst=Dekanat.getStudents().get(0);
         Student studentLast=Dekanat.getStudents().get(Dekanat.getStudents().size()-1);
         //String groupNameFirstStudent=studentFirst.getGroupOfStudent().getTitle();
@@ -118,7 +115,7 @@ Assert.assertEquals("fall if the size of the actual list of students after downl
 
     @Test
     public void  addHeadInGroupRandom() throws Exception {
-        Dekanat Dekanat = new Dekanat(fileXLSX);
+        Dekanat Dekanat = new Dekanat(".xlsx",fileJSON);
         for(Group group:Dekanat.getGroups())
         Dekanat.addHeadInGroupRandom(group);
 

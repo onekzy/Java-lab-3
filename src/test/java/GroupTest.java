@@ -16,17 +16,17 @@ public class GroupTest {
     String message;
     URL file;
     String path;
-    File fileXLSX ;
+   // File fileXLSX ;
     File fileJSON ;
     Group Group;
     Dekanat Dekanat;
     @Before
-    public void start() throws ParseException, Group.AccessDeniedException, IOException {
-                file=System.class.getResource("/dekanat.xlsx");
-                this.fileXLSX = new File(file.getFile());
+    public void start() {
+
+        this.fileJSON = new File("dekanat.json");
         Group = new Group("Test1");
         try {
-            Dekanat=new Dekanat(fileXLSX);
+            Dekanat=new Dekanat(".xlsx",fileJSON);
         } catch (Exception e) {
             e.printStackTrace();
         }

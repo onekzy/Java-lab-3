@@ -11,7 +11,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class DekanatGUI extends JFrame {
+public class DekanatGUI extends JFrame implements Runnable {
     String separate;
     //xls or json
    private JRadioButton radioButtonXLSX;
@@ -48,9 +48,10 @@ public class DekanatGUI extends JFrame {
     private Boolean markerAcademicPerformance;
     private Boolean markerMarks;
     private Boolean markerId;
+    Thread guiThrd;
 
     DekanatGUI(final Dekanat Dekanat) throws Exception {
-
+this.guiThrd=new Thread(this::run);
       this.Dekanat=Dekanat;
 
         this.separate=",";
@@ -73,8 +74,9 @@ public class DekanatGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     setVisible(false);
-                    File f=Dekanat.getFileXLSX();
-                    DekanatGUI d= new DekanatGUI(new Dekanat(f));
+                   // File f=Dekanat.getFileXLSX();
+                    File j=Dekanat.getFileJSON();
+                    DekanatGUI d= new DekanatGUI(new Dekanat(".xlsx",j));
                     d.launchFrame();
 
                 } catch (Exception e1) {
@@ -311,7 +313,7 @@ public class DekanatGUI extends JFrame {
         radioButtonJSON.addActionListener(new Listener(Dekanat,this));
         radioButtonXLSX.addActionListener(new Listener(Dekanat,this));
         panel.add(radioButtonXLSX);
-       panel.add(radioButtonJSON);
+        panel.add(radioButtonJSON);
 
        // panel.add(btnDownload);
 
@@ -543,7 +545,7 @@ try {
     }
     void createVisible(JPanel panel){
     setContentPane(panel);
-    setSize(1000,1800);
+    setSize(1300,1800);
     setVisible(true);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 }
@@ -687,10 +689,19 @@ String[] data;
 
     }// default
 
-    public void launchFrame () throws Exception {
+    private void launchFrame () throws Exception {
 
      createForm();
 
 }
 
+    @Override
+    public void run() {
+        try {
+            launchFrame();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

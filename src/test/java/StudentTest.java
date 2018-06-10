@@ -10,21 +10,20 @@ Student student=new Student("Molkov",0001,new Group("Test1"));
     String message;
     URL file;
     String path;
-    File fileXLSX ;
+   // File fileXLSX ;
     File fileJSON ;
     Group Group;
     Dekanat Dekanat;
     @Before
     public void setup() {
-        try {
-            file=System.class.getResource("/dekanat.xlsx");
-            this.fileXLSX = new File(file.getFile());
 
-            file=System.class.getResource("/dekanat.json");
-            this.fileJSON = new File(file.getFile());
-        }catch (NullPointerException e1){
-            System.out.println("Not found file: "+file.getPath()+e1);
-            return;
+        this.fileJSON = new File("dekanat.json");
+        Group = new Group("Test1");
+        try {
+            Dekanat = new Dekanat(".xlsx", fileJSON);
+        } catch (Exception e) {
+            e.printStackTrace();
+
         }
     }
     @Test
@@ -39,7 +38,7 @@ Student student=new Student("Molkov",0001,new Group("Test1"));
             student.addMark(1);
         } catch (Student.AccessDeniedException e) {
             message=e.getMessage();
-            Dekanat Dekanat=new Dekanat(fileJSON);
+            Dekanat Dekanat=new Dekanat(".xlsx",fileJSON);
             Dekanat.setMarkToStudent(student,actual);
         }
 

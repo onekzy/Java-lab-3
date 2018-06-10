@@ -25,28 +25,28 @@ import java.util.Random;
 
 public class DekanatDemo {
     Dekanat Dekanat;
-    File fileXLSX = new File(System.class.getResource("/dekanat.xlsx").getFile());
+  //  File fileXLSX = (DekanatDemo.class.getResourceAsStream("/dekanat.xlsx"));
+    File fileJSON;
 
     DekanatDemo() throws Exception {
-        try {
-            File fileJSON = new File(System.class.getResource("/dekanat.json").getFile());
-
-            this.Dekanat = new Dekanat(fileJSON);
-
-        } catch (NullPointerException e) {
+            this.fileJSON = new File("dekanat.json");
+            if (fileJSON.exists() && fileJSON.length() > 0){
+                this.Dekanat = new Dekanat(".json", fileJSON);
+        }else{
             // create the new empty json
-            File fileJSON = new File((fileXLSX.getAbsolutePath().substring(0, fileXLSX.getAbsolutePath().lastIndexOf("\\") + 1)) + "/dekanat.json");
-            fileJSON.createNewFile();
-            this.Dekanat = new Dekanat(fileXLSX);
+              this.fileJSON = new File("dekanat.json");
+              fileJSON.createNewFile();
+            this.Dekanat = new Dekanat(".xlsx",fileJSON);
         }
     }
     public static void main(String[] args) {
-        File fileXLSX = new File(System.class.getResource("/dekanat.xlsx").getFile());
+
         try {
             DekanatDemo Dekanat=new DekanatDemo();
             DekanatGUI DekanatGUI=new DekanatGUI(Dekanat.Dekanat);
-            DekanatGUI.launchFrame();
+            DekanatGUI.run();
         } catch (Exception e) {
+            System.out.println();
             e.printStackTrace();
         }
 
@@ -256,19 +256,21 @@ private Student head;// - ссылка на старосту (из членов 
     private  String sheetName;// set for first download of excel file
     private int numberRowList;// set for first download of excel file
     private ArrayList<String>arrayDataOfFile=new ArrayList<String>();
-    private File fileSource;
+    private String extensionFileSource;
     private File fileJSON;
-    private File fileXLSX;
+    private File fXLSX;
     private ArrayList<Student> students;// - массив студентов
     private ArrayList<Group> groups;// - массив групп
 
-        Dekanat (File fileSource) throws IOException, ParseException, Exception {
-            this.fileSource=fileSource;
+        Dekanat (String extensionFileSource,File fileJSON) throws IOException, ParseException, Exception {
+            this.extensionFileSource=extensionFileSource;
             String file=new String(".xlsx");
             String json=new String(".json");
-            this.fileXLSX= new File(System.class.getResource("/dekanat.xlsx").getFile());
+            //this.fileXLSX= new File(System.class.getResource("/dekanat.xlsx").getFile());
+            //this.fileXLSX= new File(System.class.get("dekanat.xlsx").getFile());
 
-            this.fileJSON = new File(System.class.getResource("/dekanat.json").getFile());
+            this.fileJSON =fileJSON;
+                    // this.fileJSON = new File(System.class.getResource("dekanat.json").getFile());
             this.students=new ArrayList<Student>(0);
             this.groups=new ArrayList<Group>(0);
             this.sheetName="Лист1";// set for first download
@@ -280,33 +282,30 @@ private Student head;// - ссылка на старосту (из членов 
             this.numberOfGapOfLine=2;
             this.numberOfPointOfLine=0;
 
-           // arrayDataOfFile=createFirstDataBase();// only for demo (default mode)
-            String checkExtension=fileSource.getName().substring(fileSource.getName().indexOf("."));
-           if(checkExtension.equals(file)){
+             if(extensionFileSource.equals(file)){
             setStudentsAndGroup();
            downloadDataInFileJSON();
            }
-           else if(checkExtension.equals(json))
+           else if(extensionFileSource.equals(json))
                downloadDataFromJSON();
         }
 
-        File getSourseFile(){
-            return  fileSource;
-        }
-        File getFileXLSX(){
+
+       /* File getFileXLSX(){
             return fileXLSX;
+        }*/
+        File getFileJSON(){
+            return  fileJSON;
         }
         ArrayList<String> createFirstDataBase () throws IOException {
-            //read excel file
-          // FileInputStream inputStream = new FileInputStream(fileSource);
+
             XSSFWorkbook workbook=null;
             try {
-                 workbook = new XSSFWorkbook(fileSource);
-            }catch(NotOfficeXmlFileException e){
-                System.out.println("Not found file: "  +fileSource.getName());
+                     workbook = new XSSFWorkbook(File.class.getResourceAsStream("/dekanat.xlsx") );
 
-            } catch (InvalidFormatException e) {
-                e.printStackTrace();
+            }catch(NotOfficeXmlFileException e){
+               e.printStackTrace();// System.out.println("Not found file: "  +fileSource.getName());
+
             }
             XSSFSheet sheet = workbook.getSheet(sheetName);/////////////////////////////////// can NullPointerException
 
