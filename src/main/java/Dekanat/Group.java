@@ -1,10 +1,11 @@
 package Dekanat;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Group {
     private String title; //название группы
-    private ArrayList<Student> students;    //массив из ссылок на студентов
+    private List<Student> students;    //массив из ссылок на студентов
     private Student head = null;   //ссылка на старосту (из членов группы)
 
     Group(String title) {
@@ -48,7 +49,7 @@ public class Group {
      * @return успешность операции
      */
     boolean removeStudentFromGroup(Student student) {
-        if(getHead() == student){
+        if(getHeadGroup() == student){
             head = null;
         }
         return students.remove(student);
@@ -75,7 +76,7 @@ public class Group {
      * @param student студент
      */
     boolean setHeadGroup(Student student) {
-        if (students.contains(student)) {
+        if (student != null && students.contains(student)) {
             this.head = student;
             return true;
         } else {
@@ -87,15 +88,15 @@ public class Group {
      * Избрание старостой студента с наивысшим средним баллом
       */
     public void setHeadGroup() {
-        Student headStud = null;
+        Student headGroup = null;
         double averageMark = 0.0;
         for(Student student:students){
             if(student.getAverageMark() >= averageMark){
-                headStud = student;
+                headGroup = student;
                 averageMark = student.getAverageMark();
             }
         }
-        this.head = headStud;
+        this.head = headGroup;
     }
 
     public String getTitle(){
@@ -106,7 +107,7 @@ public class Group {
         return students.size();
     }
 
-    public Student getHead(){
+    public Student getHeadGroup(){
         return head;
     }
 

@@ -7,7 +7,7 @@ public class Student {
     private int id; //Идентификационный номер
     private String fio;
     private Group group = null;
-    private ArrayList<Integer> marks = new ArrayList<Integer>();   //Массив оценок
+    private List<Integer> marks = new ArrayList<Integer>();   //Массив оценок
 
     Student(int id, String fio) {
         this.id = id;
@@ -55,16 +55,8 @@ public class Student {
         }
     }
 
-    ArrayList<Integer> getMarks() {
+    List<Integer> getMarks() {
         return new ArrayList<Integer>(marks);
-    }
-
-    public String getTitleGroup() {
-        if (group != null) {
-            return group.getTitle();
-        } else {
-            return null;
-        }
     }
 
     public String toString() {
@@ -73,29 +65,5 @@ public class Student {
             outStr += ", group: " + getGroup().getTitle();
         }
         return outStr;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj.getClass().getTypeName().equals("Dekanat.Student")) {
-            Student stud = (Student) obj;
-            if (stud.id == this.id && stud.fio.equals(this.fio) && this.marks.size() == stud.marks.size()) {
-                for (int i = 0; i < this.marks.size(); i++) {
-                    if (this.marks.get(i) != stud.marks.get(i)) {
-                        return false;
-                    }
-                }
-                if (this.group != null && stud.group != null) {
-                    if (this.group.getTitle().equals(stud.group.getTitle())) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                } else if (this.group == null && stud.group == null){
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }

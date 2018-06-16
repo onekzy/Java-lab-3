@@ -5,39 +5,58 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class DekanatTest {
+    String titleGroup1 = "Group1";
+    Group gr1 = new Group(titleGroup1);
+    String titleGroup2 = "Group2";
+    Group gr2 = new Group(titleGroup2);
+    String fio1 = "Irina Gusman Igorevna";
+    int id1 = 1;
+    String fio2 = "Ivan Gusman Gorin";
+    int id2 = 2;
+    Student st1 = new Student(id1, fio1);
+    Student st2 = new Student(id2, fio2);
+
+    String fio3 = "Vova Gusman Gorin";
+    int id3 = 3;
+    Student st3 = new Student(id3, fio3);
+    String titleGroup3 = "Group3";
+    Group gr3 = new Group(titleGroup3);
+    Dekanat testDekanat = new Dekanat();
+
+
+    Student testSt1;
+    Student testSt2;
+    Group testGr1;
+
+
+    {
+        gr3.addStudentToGroup(st1);
+        gr3.addStudentToGroup(st2);
+        gr3.addStudentToGroup(st3);
+        gr3.setHeadGroup(st3);
+
+
+        testSt1= testDekanat.newStudent(id1,fio1);
+        testSt2 = testDekanat.newStudent(id2,fio2);
+        Group gr = testDekanat.newGroup(titleGroup1);
+        testGr1 = testDekanat.newGroup(titleGroup2);
+        testDekanat.addStudentToGroup(testSt1, testGr1);
+        testDekanat.addStudentToGroup(testSt2, testGr1);
+
+
+    }
+
 
     @Test
-    public void newStudenttTest() {
+    public void newStudent() {
         Dekanat dekanat = new Dekanat();
-        String fio1 = "Irina Gusman Igorevna";
-        int id1 = 1;
-        String fio2 = "Mark Ivanov Ignatov";
-        int id2 = 2;
-        Student stud1;
-        Student stud2;
-        assertNotNull(stud1 = dekanat.newStudent(fio1, id1));
-        assertNotNull(stud2 = dekanat.newStudent(fio2, id2));
-        assertTrue(dekanat.searchStudent(id1) == stud1);
-        assertTrue(dekanat.searchStudent(id2) == stud2);
-        assertNull(dekanat.newStudent(fio1, id1));
-        assertTrue(stud1.getFio().equals(fio1) && stud1.getId() == id1);
-        assertTrue(stud2.getFio().equals(fio2) && stud2.getId() == id2);
+        assertEquals(dekanat.getNumStudents(),0);
+        assertNotNull(st1 = dekanat.newStudent(id1,fio1));
+        assertEquals(dekanat.getNumStudents(),1);
     }
 
     @Test
-    public void newGroupTest() {
-        Dekanat dekanat = new Dekanat();
-        String titleGroup1 = "Group1";
-        String titleGroup2 = "Group2";
-        Group group1;
-        Group group2;
-        assertNotNull(group1 = dekanat.newGroup(titleGroup1));
-        assertNotNull(group2 = dekanat.newGroup(titleGroup2));
-        assertNull(dekanat.newGroup(titleGroup2));
-        assertEquals(group1.getTitle(), titleGroup1);
-        assertEquals(group2.getTitle(), titleGroup2);
-        assertTrue(dekanat.searchGroup(titleGroup1) == group1);
-        assertTrue(dekanat.searchGroup(titleGroup2) == group2);
+    public void newGroup() {
     }
 
     @Test
@@ -45,14 +64,23 @@ public class DekanatTest {
     }
 
     @Test
+    public void addMarksStudent1() {
+    }
+
+    @Test
     public void initiationOfElectionsInGroups() {
     }
 
     @Test
-    public void removeStudentTest() {
+    public void removeStudent1() {
+    }
 
+    @Test
+    public void removeStudent2() {
+    }
 
-
+    @Test
+    public void removeStudentMark() {
     }
 
     @Test
@@ -60,28 +88,12 @@ public class DekanatTest {
     }
 
     @Test
-    public void getDataStudentsAndGroup() {
+    public void searchStudent1() {
+
     }
 
     @Test
-    public void loadStudentAndGroupTest() {
-    }
+    public void searchGroup() {
 
-    @Test
-    public void saveStudentAndGroupTest() {
-    }
-
-    @Test
-    public void searchGroupTest() {
-        Dekanat dekanat = new Dekanat();
-        String titleGroup1 = "Group1";
-        String titleGroup2 = "Group2";
-        Group group1;
-        Group group2;
-        group1 = dekanat.newGroup(titleGroup1);
-        group2 = dekanat.newGroup(titleGroup2);
-        assertTrue(group1 == dekanat.searchGroup(titleGroup1));
-        assertTrue(group2 == dekanat.searchGroup(titleGroup2));
-        assertFalse(group2 == dekanat.searchGroup(titleGroup2.substring(0,4)));
     }
 }

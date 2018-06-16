@@ -5,10 +5,10 @@ import Dekanat.Group;
 public class DekanatDemo {
     public static void main(String[] args) {
         Dekanat myDeckanat = new Dekanat();
-        Student newStud1 = myDeckanat.newStudent("Katia", 1);
-        Student newStud2 = myDeckanat.newStudent("Vova", 2);
-        Student newStud3 = myDeckanat.newStudent("Irina", 3);
-        myDeckanat.addStudentToGroup(myDeckanat.newStudent("Andrei", 4), myDeckanat.newGroup("Group4"));
+        Student newStud1 = myDeckanat.newStudent(1, "Katia");
+        Student newStud2 = myDeckanat.newStudent(2,"Vova");
+        Student newStud3 = myDeckanat.newStudent(3,"Irina");
+        myDeckanat.addStudentToGroup(myDeckanat.newStudent(4,"Andrei"), myDeckanat.newGroup("Group4"));
         Boolean bool = newStud1.equals(newStud1);
         Group group1 = myDeckanat.newGroup("Group1");
         myDeckanat.addStudentToGroup(newStud1, group1);
@@ -28,5 +28,7 @@ public class DekanatDemo {
         myDeckanat.loadStudentAndGroup();
         myDeckanat.saveStudentAndGroup();
         System.out.println(myDeckanat.getDataStudentsAndGroup());
+
+
     }
 }

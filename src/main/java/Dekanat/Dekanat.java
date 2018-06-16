@@ -1,6 +1,5 @@
 package Dekanat;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,8 +7,8 @@ import java.util.stream.Collectors;
 
 public class Dekanat {
 
-    private ArrayList<Student> students = new ArrayList<Student>();    //массив студентов
-    private ArrayList<Group> groups = new ArrayList<Group>();    //массив групп
+    private List<Student> students = new ArrayList<Student>();    //массив студентов
+    private List<Group> groups = new ArrayList<Group>();    //массив групп
 
     /**
      * Создание нового студента
@@ -17,12 +16,14 @@ public class Dekanat {
      * @param id id студента
      * @return созданный студент
      */
-    public Student newStudent(String fio, int id) {
-        if(students.stream().filter((st)-> st.getId() == id).findFirst().orElse(null) == null) {
+    public Student newStudent(int id, String fio) {
+        if (fio == null || fio.length() == 0 || id < 1) {
+            return null;
+        } else if (students.stream().filter((st) -> st.getId() == id).findFirst().orElse(null) == null) {
             Student newStud = new Student(id, fio);
             students.add(newStud);
             return newStud;
-        }else{
+        } else {
             return null;
         }
     }
@@ -33,7 +34,7 @@ public class Dekanat {
      * @return созданная группа
      */
     public Group newGroup(String title){
-        if(searchGroup(title) == null) {
+        if(title != null && title.length() != 0 && searchGroup(title) == null) {
             Group newGroup = new Group(title);
             groups.add(newGroup);
             return newGroup;
@@ -44,12 +45,12 @@ public class Dekanat {
 
     /**
      * Добавления переданного количества оценок всем студентам
-     * @param namber количество добавляемых оценок
+     * @param mark количество добавляемых оценок
      */
-    public void addMarksStudent(int namber) {
+    public void addMarksStudent(int mark) {
         Random rand = new Random();
-        students.stream().forEach(student -> {
-            for (int i = 0; i < namber; i++) student.addMark(rand.nextInt(4) + 1);
+        students.forEach(student -> {
+            for (int i = 0; i < mark; i++) student.addMark(rand.nextInt(4) + 1);
         });
     }
 
@@ -72,27 +73,16 @@ public class Dekanat {
      * @param student студент подлежащий отчислению
      * @return успешность выполнения
      */
-    public boolean removeStudent(Student student){
-       if(students.contains(student)){
-           student.getGroup().removeStudentFromGroup(student);
-           students.remove(student);
-           return false;
-       }
-       return true;
-    }
-
-    /**
-     * Отчисление студента по ФИО
-      * @param fio ФИО студента подлежащего отчислению
-     * @return успешность выполнения
-     */
-    public boolean removeStudent(String fio) {
-        Student student = searchStudent(fio);
-        if (student != null) {
-            return removeStudent(student);
-        }else{
-            return false;
+    public boolean removeStudent(Student student) {
+        if (students.contains(student)) {
+            Group gr = student.getGroup();
+            if (gr != null) {
+                gr.removeStudentFromGroup(student);
+            }
+            students.remove(student);
+            return true;
         }
+        return false;
     }
 
     /**
@@ -199,5 +189,15 @@ public class Dekanat {
     public Group searchGroup(String title) {
         return groups.stream().filter((gr)-> gr.getTitle().equals(title)).findFirst().orElse(null);
     }
-}
 
+    /**
+     * Вычисляет количество студентов
+     * @return количество студентов
+     */
+    public int getNumStudents(){
+        return students.size();
+    }
+    public int getNumGroups(){
+        return groups.size();
+    }
+}
