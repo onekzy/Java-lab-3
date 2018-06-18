@@ -28,7 +28,5 @@ public class DekanatDemo {
         myDeckanat.loadStudentAndGroup();
         myDeckanat.saveStudentAndGroup();
         System.out.println(myDeckanat.getDataStudentsAndGroup());
-
-
     }
 }
