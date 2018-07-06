@@ -22,7 +22,7 @@ public class DekanatTest {
 
     @Test
     public void addGroupsFromFile() {
-        assertEquals(d1.searchGroups("СУ").getTitle(), "СУ");
+        assertEquals(d1.searchGroups("КСУ").getTitle(), "КСУ");
     }
 
     @Test

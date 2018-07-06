@@ -41,7 +41,7 @@ public class GroupTest {
     @org.junit.Test
     public void setHead() {
         g1.setHead();
-        assertEquals(g1.getHead(),s1);
+        assertEquals(g1.getHead(),s2);
     }
 
     @org.junit.Test
